@@ -9,9 +9,9 @@ export default function MainMenu({className}){
                 <li className="group relative cursor-pointer py-2">
                     <Link
                         className="menu-hover my-2 py-2 text-base font-medium text-black lg:mx-4 uppercase"
-                        href="/products/tires"
+                        href="/workouts"
                         >
-                        Reifen
+                        Workouts
                     </Link>
 
                     <ul className="invisible absolute z-50 flex w-auto flex-col bg-gray-100 py-1 px-4 text-gray-800 shadow-xl group-hover:visible">

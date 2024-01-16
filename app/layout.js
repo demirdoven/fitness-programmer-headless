@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={lato.className}>
             <SiteHeader />
-            <main className="flex min-h-screen flex-col items-center justify-between">
+            <main className="">
               {children}
             </main>
             
