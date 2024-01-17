@@ -1,16 +1,37 @@
 'use client'
 
 import { getGoals } from '@/app/actions';
+import { useRouter, usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
 const WorkoutSelector = ({searchParams, selectedGoal, setSelectedGoal, goals}) => {
     
-    
+    const router = useRouter()
+    const pathname = usePathname()
 
+    const [secilen, setSecilen] = useState('all')
 
     const handleGoalChanger = (e) => {
-        setSelectedGoal(e.target.value);
+        setSecilen(e.target.value);
     };
+
+    useEffect( ()=>{
+
+        let goalParam = '';
+
+        if( secilen !== 'all' ){
+            goalParam = secilen;
+        }
+
+        // //const updatedUrl = `${pathname}/${goalParam}`;
+        const updatedUrl = `http://localhost:3000/workouts/${goalParam}`;
+
+        console.log(updatedUrl)
+        router.replace(updatedUrl, undefined, { shallow: true, scroll: false });
+
+
+
+    }, [secilen, router])
 
     return (
         <div className="w-full py-12 bg-slate-100 text-center">

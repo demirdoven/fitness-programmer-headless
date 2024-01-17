@@ -3,17 +3,15 @@
 import React, { useEffect, useState } from 'react'
 import WorkoutSelector from './WorkoutSelector'
 import { getGoals, getWorkouts } from '@/app/actions'
-import { useRouter } from 'next/navigation'
-import { usePathname } from 'next/navigation';
 
-const WorkoutsInner = ({goal, searchParams}) => {
 
-    const router = useRouter()
-    const pathname = usePathname()
+const WorkoutsInner = ({searchParams, goal, workoutsInitial}) => {
 
-    const [selectedGoal, setSelectedGoal] = useState(goal || searchParams?.goal)
+    
+
+    const [selectedGoal, setSelectedGoal] = useState(goal)
     const [goals, setGoals] = useState([])
-    const [workouts, setWorkouts] = useState([])
+    const [workouts, setWorkouts] = useState(workoutsInitial)
 
     useEffect(() => {
 
@@ -26,26 +24,27 @@ const WorkoutsInner = ({goal, searchParams}) => {
     }, [] );
 
     
-    useEffect(() => {
+    
+    // useEffect(() => {
 
-        console.log('selectedGoal', selectedGoal)
-        const fetchWO = async () => {
-            const workoutz = await getWorkouts(selectedGoal);
-            setWorkouts(workoutz) 
-        };
-        fetchWO();
+    //     // const fetchWO = async () => {
+    //     //     const workoutz = await getWorkouts(selectedGoal);
+    //     //     setWorkouts(workoutz) 
+    //     // };
+    //     // fetchWO();
 
-        console.log('pathname', pathname)
+    //     let goalParam = '';
 
-        let goalParam = '';
-
-        if( selectedGoal !== undefined && selectedGoal !== 'all' ){
-            goalParam = selectedGoal;
-        }
-        // const updatedUrl = `${pathname}/${goalParam}`;
-        // router.replace(updatedUrl, undefined, { shallow: true, scroll: false });
+    //     if( selectedGoal !== undefined && selectedGoal !== 'all' ){
+    //         goalParam = selectedGoal;
+    //     }
+    //     //const updatedUrl = `${pathname}/${goalParam}`;
+    //     const updatedUrl = `http://localhost:3000/workouts/${goalParam}`;
+    //     router.replace(updatedUrl, undefined, { shallow: true, scroll: false });
             
-    }, [selectedGoal, pathname, router] );
+    //     console.log(selectedGoal)
+        
+    // }, [selectedGoal] );
 
 
 
